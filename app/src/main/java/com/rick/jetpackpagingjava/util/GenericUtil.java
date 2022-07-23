@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 /**
  * 泛型工具
@@ -15,13 +16,13 @@ public class GenericUtil {
         // 先找父类
         Class<?> superclass = childClass.getSuperclass();
         if (parentClass.equals(superclass)) {
-            return getGenericClass(childClass, genericIndex);
+            return getGenericClass(Objects.requireNonNull(childClass.getGenericSuperclass()), genericIndex);
         } else {
             // 若没找到，再找接口
             Class<?>[] interfacesClass = childClass.getInterfaces();
-            for (Class<?> interfaceClass : interfacesClass) {
-                if (parentClass.equals(interfaceClass)) {
-                    return getGenericClass(childClass, genericIndex);
+            for (int i = 0; i < interfacesClass.length; i++) {
+                if (parentClass.equals(interfacesClass[i])) {
+                    return getGenericClass(childClass.getGenericInterfaces()[i], genericIndex);
                 }
             }
             // 若还是没找到
@@ -33,9 +34,8 @@ public class GenericUtil {
         }
     }
 
-    private static <G> Class<G> getGenericClass(@NonNull Class<?> clazz, @IntRange(from = 0) int genericIndex) {
-        Type genericSuperclass = clazz.getGenericSuperclass();
-        ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+    private static <G> Class<G> getGenericClass(@NonNull Type type, @IntRange(from = 0) int genericIndex) {
+        ParameterizedType parameterizedType = (ParameterizedType) type;
         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
         Class<G> genericClass = (Class<G>) actualTypeArguments[genericIndex];
         return genericClass;
