@@ -1,14 +1,11 @@
 package com.rick.jetpackpagingjava;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.rick.jetpackpagingjava.base.BaseActivity;
+import com.rick.jetpackpagingjava.databinding.ActivityMainBinding;
+import com.rick.jetpackpagingjava.viewmodel.MainViewModel;
 
-import android.os.Bundle;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void init(ActivityMainBinding binding, MainViewModel mainViewModel) {
     }
 }
