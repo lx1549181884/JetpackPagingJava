@@ -12,10 +12,15 @@ import retrofit2.Retrofit;
 
 public class LiveDataCallAdapterFactory<T> extends CallAdapter.Factory {
 
+
+    public static <T> LiveDataCallAdapterFactory<T> create(@NonNull LiveDataCallAdapter.Convert<T> convert) {
+        return new LiveDataCallAdapterFactory<T>(convert);
+    }
+
     @NonNull
     private final LiveDataCallAdapter.Convert<T> convert;
 
-    public LiveDataCallAdapterFactory(@NonNull LiveDataCallAdapter.Convert<T> convert) {
+    private LiveDataCallAdapterFactory(@NonNull LiveDataCallAdapter.Convert<T> convert) {
         this.convert = convert;
     }
 

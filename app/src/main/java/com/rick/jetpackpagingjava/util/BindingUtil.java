@@ -16,10 +16,12 @@ import com.blankj.utilcode.util.ReflectUtils;
  */
 public class BindingUtil {
 
-    public static <B extends ViewDataBinding> B createBinding(@NonNull Class<?> childClass, @NonNull Class<?> parentClass, @IntRange(from = 0) int genericIndex, @NonNull LayoutInflater inflater, @NonNull LifecycleOwner owner) {
+    public static <B extends ViewDataBinding> B createBinding(@NonNull Class<?> childClass, @NonNull Class<?> parentClass, @IntRange(from = 0) int genericIndex, @NonNull LayoutInflater inflater, @Nullable LifecycleOwner owner) {
         Class<B> genericClass = GenericUtil.getGenericClass(childClass, parentClass, genericIndex);
         B binding = createBinding(genericClass, inflater, null, false);
-        binding.setLifecycleOwner(owner);
+        if (owner != null) {
+            binding.setLifecycleOwner(owner);
+        }
         return binding;
     }
 
