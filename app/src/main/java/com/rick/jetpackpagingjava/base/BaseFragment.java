@@ -22,16 +22,27 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, Vm extends V
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = BindingUtil.createBinding(this);
+        binding = createBinding();
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = ViewModelUtil.getViewModel(this);
+        viewModel = getViewModel();
         init(binding, viewModel);
     }
+
+    @NonNull
+    private Binding createBinding() {
+        return BindingUtil.createBinding(getClass(), BaseFragment.class, 0, getLayoutInflater(), getViewLifecycleOwner());
+    }
+
+    @NonNull
+    private Vm getViewModel() {
+        return ViewModelUtil.getViewModel(this, BaseFragment.class, 1);
+    }
+
 
     protected abstract void init(Binding binding, Vm viewModel);
 }

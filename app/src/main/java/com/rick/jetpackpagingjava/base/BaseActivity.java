@@ -2,6 +2,7 @@ package com.rick.jetpackpagingjava.base;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ViewDataBinding;
@@ -18,10 +19,20 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, Vm extends V
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = BindingUtil.createBinding(this);
+        binding = createBinding();
         setContentView(binding.getRoot());
-        vm = ViewModelUtil.getViewModel(this);
+        vm = getViewModel();
         init(binding, vm);
+    }
+
+    @NonNull
+    private Binding createBinding() {
+        return BindingUtil.createBinding(getClass(), BaseActivity.class, 0, getLayoutInflater(), this);
+    }
+
+    @NonNull
+    private Vm getViewModel() {
+        return ViewModelUtil.getViewModel(this, BaseActivity.class, 1);
     }
 
     protected abstract void init(Binding binding, Vm vm);
