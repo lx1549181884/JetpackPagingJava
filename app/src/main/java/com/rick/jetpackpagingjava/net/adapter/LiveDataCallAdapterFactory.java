@@ -10,11 +10,13 @@ import java.lang.reflect.Type;
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 
+/**
+ * Retrofit 的 CallAdapterFactory，将 Service 方法返回的 Call 转为 LiveData
+ */
 public class LiveDataCallAdapterFactory<T> extends CallAdapter.Factory {
 
-
     public static <T> LiveDataCallAdapterFactory<T> create(@NonNull LiveDataCallAdapter.Convert<T> convert) {
-        return new LiveDataCallAdapterFactory<T>(convert);
+        return new LiveDataCallAdapterFactory<>(convert);
     }
 
     @NonNull

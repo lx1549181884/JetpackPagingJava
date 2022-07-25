@@ -11,8 +11,14 @@ import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Retrofit 的 CallAdapter，将 Service 方法返回的 Call 转为 LiveData
+ */
 public class LiveDataCallAdapter<T> implements CallAdapter<T, LiveData<T>> {
 
+    /**
+     * 转换逻辑
+     */
     public interface Convert<T> {
         T onResponse(@NonNull Call<T> call, @NonNull Response<T> response);
 
