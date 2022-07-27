@@ -35,7 +35,7 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, Vm extends V
      */
     @NonNull
     private Binding createBinding() {
-        return BindingUtil.createBinding(getClass(), BaseActivity.class, 0, getLayoutInflater(), this);
+        return BindingUtil.createBinding(getClass(), BaseActivity.class, 0, getLayoutInflater(), this, null, false);
     }
 
     /**

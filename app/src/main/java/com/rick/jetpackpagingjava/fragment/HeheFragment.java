@@ -15,8 +15,7 @@ public class HeheFragment extends BaseFragment<FragmentHeheBinding, HeheViewMode
     @Override
     protected void init(FragmentHeheBinding binding, HeheViewModel viewModel) {
         repoAdapter = new RepoAdapter();
-        repoAdapter.withLoadStateFooter(new LoadStateAdapter(repoAdapter::retry));
-        binding.recyclerView.setAdapter(repoAdapter);
+        binding.recyclerView.setAdapter(repoAdapter.withLoadStateFooter(new LoadStateAdapter(repoAdapter::retry)));
         ViewUtil.addRecyclerViewDivider(binding.recyclerView);
         viewModel.repoList.observe(getViewLifecycleOwner(), repoBeanPagingData -> {
             LogUtil.log("onChanged " + GsonUtils.toJson(repoBeanPagingData));

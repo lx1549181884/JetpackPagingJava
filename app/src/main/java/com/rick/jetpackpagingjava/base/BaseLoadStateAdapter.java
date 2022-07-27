@@ -34,7 +34,7 @@ public abstract class BaseLoadStateAdapter<T extends ViewDataBinding> extends Lo
     @Override
     public CommonViewHolder<T> onCreateViewHolder(@NonNull ViewGroup viewGroup, @NonNull LoadState loadState) {
         LogUtil.log("BaseLoadStateAdapter onCreateViewHolder " + loadState);
-        T binding = BindingUtil.createBinding(getClass(), BaseLoadStateAdapter.class, 0, LayoutInflater.from(viewGroup.getContext()), null);
+        T binding = BindingUtil.createBinding(getClass(), BaseLoadStateAdapter.class, 0, LayoutInflater.from(viewGroup.getContext()), null, viewGroup, false);
         return new CommonViewHolder<>(binding);
     }
 

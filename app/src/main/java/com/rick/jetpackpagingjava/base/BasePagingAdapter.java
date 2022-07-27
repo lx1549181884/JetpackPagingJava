@@ -30,7 +30,7 @@ public abstract class BasePagingAdapter<Bean, Binding extends ViewDataBinding> e
     @NonNull
     @Override
     public CommonViewHolder<Binding> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Binding binding = BindingUtil.createBinding(getClass(), BasePagingAdapter.class, 1, LayoutInflater.from(parent.getContext()), null);
+        Binding binding = BindingUtil.createBinding(getClass(), BasePagingAdapter.class, 1, LayoutInflater.from(parent.getContext()), null, parent, false);
         return new CommonViewHolder<>(binding);
     }
 

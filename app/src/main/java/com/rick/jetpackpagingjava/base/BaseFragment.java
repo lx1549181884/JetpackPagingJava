@@ -43,7 +43,7 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, Vm extends V
      */
     @NonNull
     private Binding createBinding() {
-        return BindingUtil.createBinding(getClass(), BaseFragment.class, 0, getLayoutInflater(), getViewLifecycleOwner());
+        return BindingUtil.createBinding(getClass(), BaseFragment.class, 0, getLayoutInflater(), getViewLifecycleOwner(), null, false);
     }
 
     /**

@@ -27,11 +27,11 @@ public class BindingUtil {
      * @param <B>          声明的 ViewDataBinding
      * @return 声明的 ViewDataBinding 实例
      */
-    public static <B extends ViewDataBinding> B createBinding(@NonNull Class<?> childClass, @NonNull Class<?> parentClass, @IntRange(from = 0) int genericIndex, @NonNull LayoutInflater inflater, @Nullable LifecycleOwner owner) {
+    public static <B extends ViewDataBinding> B createBinding(@NonNull Class<?> childClass, @NonNull Class<?> parentClass, @IntRange(from = 0) int genericIndex, @NonNull LayoutInflater inflater, @Nullable LifecycleOwner owner, @Nullable ViewGroup viewGroup, boolean attachRoot) {
         // 获取 ViewDataBinding Class
         Class<B> genericClass = GenericUtil.getGenericClass(childClass, parentClass, genericIndex);
         // 创建 ViewDataBinding
-        B binding = createBinding(genericClass, inflater, null, false);
+        B binding = createBinding(genericClass, inflater, viewGroup, attachRoot);
         // 绑定生命周期
         if (owner != null) {
             binding.setLifecycleOwner(owner);
