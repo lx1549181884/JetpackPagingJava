@@ -3,11 +3,9 @@ package com.rick.jetpackpagingjava.adapter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.blankj.utilcode.util.GsonUtils;
 import com.rick.jetpackpagingjava.base.BasePagingAdapter;
 import com.rick.jetpackpagingjava.bean.RepoBean;
 import com.rick.jetpackpagingjava.databinding.ItemRepoBinding;
-import com.rick.jetpackpagingjava.util.LogUtil;
 
 import java.util.Objects;
 
@@ -28,7 +26,6 @@ public class RepoAdapter extends BasePagingAdapter<RepoBean, ItemRepoBinding> {
 
     @Override
     protected void initItem(ItemRepoBinding binding, RepoBean bean, int position) {
-        LogUtil.log("initItem " + GsonUtils.toJson(bean));
         binding.setRepoBean(bean);
     }
 }

@@ -11,5 +11,5 @@ import com.rick.jetpackpagingjava.bean.RepoBean;
 import com.rick.jetpackpagingjava.paging.RepoPagingSource;
 
 public class HeheViewModel extends ViewModel {
-    public LiveData<PagingData<RepoBean>> repoList = PagingLiveData.getLiveData(new Pager<>(new PagingConfig(/* pageSize = */ 5), RepoPagingSource::new));
+    public LiveData<PagingData<RepoBean>> repoList = PagingLiveData.getLiveData(new Pager<>(new PagingConfig(5, 1, true, 5), RepoPagingSource::new));
 }
